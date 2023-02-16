@@ -1,4 +1,4 @@
-export const mockQuotes = [
+export const quotesList = [
     {
         text: 'Иногда деньги обходятся нам слишком дорого.',
         author: 'Ralph Waldo Emerson',

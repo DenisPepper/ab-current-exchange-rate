@@ -1,8 +1,9 @@
-import {mockQuotes} from "./mock-quotes";
+import {quotesList} from "./quotes-list";
 import css from './quote.module.css';
 
 export const Quote = () => {
-    const {text, author} = mockQuotes[2];
+    const randomIndex = Math.floor(Math.random() * quotesList.length);
+    const {text, author} = quotesList[randomIndex];
 
     return (
         <>
