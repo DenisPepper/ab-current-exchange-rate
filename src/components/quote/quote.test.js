@@ -1,11 +1,11 @@
 import {render, screen} from "@testing-library/react";
 import {Quote} from "./quote";
-import {quotes} from "./quotes";
+import {mockQuotes} from "./mock-quotes";
 
 
 
 describe('test Quote FC', () => {
-    const {text, author} = quotes[0];
+    const {text, author} = mockQuotes[2];
 
     it('should contain an expected quote text ', () => {
         render(<Quote />);
