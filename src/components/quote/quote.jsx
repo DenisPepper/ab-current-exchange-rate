@@ -1,9 +1,12 @@
 import {quotesList} from "./quotes-list";
 import css from './quote.module.css';
+import {selectRandomQuote} from "./select-random-quote/select-random-quote";
 
-export const Quote = () => {
-    const randomIndex = Math.floor(Math.random() * quotesList.length);
-    const {text, author} = quotesList[randomIndex];
+const defaultQuote = selectRandomQuote(quotesList);
+
+export const Quote = (props) => {
+    const {quote = defaultQuote} = props;
+    const {text, author} = quote;
 
     return (
         <>
