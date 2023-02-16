@@ -1,5 +1,9 @@
-import './App.css';
+import * as css from './app.module.css';
 
 export const App = () => {
-  return <div className='App'></div>;
+    return (
+        <div className={css.main}>
+
+        </div>
+    );
 };
