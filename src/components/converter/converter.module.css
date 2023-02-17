@@ -1,0 +1,21 @@
+.form {
+    padding: 10px 2px;
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid #7f7f7f;
+    border-radius: 5px;
+}
+
+.label {
+    display: flex;
+    flex-direction: column;
+}
+
+.label_text {
+    font-weight: bold;
+    color: #7f7f7f;
+}
+
+.input {
+    margin: 0 auto;
+}
