@@ -2,7 +2,9 @@ import css from './converter.module.css';
 import {useConverter} from "model";
 
 export const Converter = () => {
-    const {rub, usd, updateRub, updateUsd} = useConverter();
+    const {rub, usd, updateRub, updateUsd} = useConverter(
+        {initialRubValue: 100, currencyRange: 50}
+    );
 
     return (
         <form className={css.form}>
