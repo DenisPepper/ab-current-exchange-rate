@@ -1,8 +1,17 @@
 import {useState} from "react";
+import {rubToUsd} from "model/currency-converter/currency-converter";
 
-export const useConverter = () => {
-    const [rub, setRub] = useState(() => 100);
-    const [usd, setUsd] = useState(() => 100);
+export const useConverter = (props) => {
+    const {
+        initialRubValue,
+        currencyRange
+    } = props;
+
+    const initialUsdValue = rubToUsd(initialRubValue, currencyRange);
+
+    const [rub, setRub] = useState(() => initialRubValue);
+
+    const [usd, setUsd] = useState(() => initialUsdValue);
 
     return {
         rub,

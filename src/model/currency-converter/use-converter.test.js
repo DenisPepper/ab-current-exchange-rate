@@ -1,6 +1,28 @@
+import {renderHook} from "@testing-library/react-hooks";
+import {useConverter} from "./use-converter";
+
+const currencyRange = 50;
+const initialRubValue = 100;
+const evaluatedUsdValue = 2;
+
+/*
+ result.current - это текущий вызов хука
+ result.all - все вызовы хука
+ */
 describe('when render', () => {
-    it.todo('check rub-input initial value');
-    it.todo('usd-input should be evaluated by rub initial value');
+    it('rub should be equal initial value', () => {
+        const {result} = renderHook(() => useConverter(
+            {initialRubValue, currencyRange}
+        ));
+        expect(result.current.rub).toEqual(initialRubValue);
+    });
+
+    it('usd should be evaluated with initial rub value', () => {
+        const {result} = renderHook(() => useConverter(
+            {initialRubValue, currencyRange}
+        ));
+        expect(result.current.usd).toEqual(evaluatedUsdValue);
+    });
 })
 
 describe('when use updateRub', () => {
