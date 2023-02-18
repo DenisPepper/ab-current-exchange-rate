@@ -13,19 +13,22 @@ export const useConverter = (props) => {
 
     const [usd, setUsd] = useState(() => initialUsdValue);
 
-    const updateRub = (rubValue) => {
-        const rub = Number(rubValue);
-        const usd = rubToUsd(rub, currencyRange);
-        setRub(rub);
-        setUsd(usd);
+    const createConverter = (direction) => {
+        const convert = direction === 'rub-usd' ? rubToUsd : usdToRub;
+        const setBase = direction === 'rub-usd' ? setRub : setUsd;
+        const setTarget = direction === 'rub-usd' ? setUsd : setRub;
+
+        return (base) => {
+            const baseAsNumber = Number(base);
+            const target = convert(baseAsNumber, currencyRange);
+            setBase(baseAsNumber);
+            setTarget(target);
+        }
     }
 
-    const updateUsd = (usdValue) => {
-        const usd = Number(usdValue);
-        const rub = usdToRub(usd, currencyRange);
-        setRub(rub);
-        setUsd(usd);
-    }
+    const updateRub = createConverter('rub-usd');
+
+    const updateUsd = createConverter('usd-rub');
 
     return {
         rub,
