@@ -7,13 +7,13 @@ describe('test render Converter FC', () => {
     it('rub input should contain an expected text', () => {
         render(<Converter />);
         const input = screen.getByLabelText(/RUB, ₽/);
-        expect(input).toBeInTheDocument();
+        expect(input).toHaveValue(100);
     });
 
     it('usd input should contain an expected text', () => {
         render(<Converter />);
         const input = screen.getByLabelText(/USD, \$/)
-        expect(input).toBeInTheDocument();
+        expect(input).toHaveValue(2);
     });
 
 
