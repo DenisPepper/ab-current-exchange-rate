@@ -12,14 +12,16 @@ const evaluatedUsdValue = 2;
 describe('when render', () => {
     it('rub should be equal initial value', () => {
         const {result} = renderHook(() => useConverter(
-            {initialRubValue, currencyRange}
+            initialRubValue,
+            currencyRange
         ));
         expect(result.current.rub).toEqual(initialRubValue);
     });
 
     it('usd should be evaluated with initial rub value', () => {
         const {result} = renderHook(() => useConverter(
-            {initialRubValue, currencyRange}
+            initialRubValue,
+            currencyRange
         ));
         expect(result.current.usd).toEqual(evaluatedUsdValue);
     });
@@ -28,7 +30,8 @@ describe('when render', () => {
 describe('when use updateRub', () => {
     it('should update the rub value', () => {
         const {result} = renderHook(() => useConverter(
-            {initialRubValue, currencyRange}
+            initialRubValue,
+            currencyRange
         ));
         act(() => {
             result.current.updateRub((19))
@@ -38,7 +41,8 @@ describe('when use updateRub', () => {
 
     it('should evaluate the usd value', () => {
         const {result} = renderHook(() => useConverter(
-            {initialRubValue, currencyRange}
+            initialRubValue,
+            currencyRange
         ));
         act(() => {
             result.current.updateRub(19)
@@ -50,7 +54,8 @@ describe('when use updateRub', () => {
 describe('when use updateUsd', () => {
     it('should update the usd value', () => {
         const {result} = renderHook(() => useConverter(
-            {initialRubValue, currencyRange}
+            initialRubValue,
+            currencyRange
         ));
         act(() => {
             result.current.updateUsd(49)
@@ -61,7 +66,8 @@ describe('when use updateUsd', () => {
 
     it('should evaluate the rub value', () => {
         const {result} = renderHook(() => useConverter(
-            {initialRubValue, currencyRange}
+            initialRubValue,
+            currencyRange
         ));
         act(() => {
             result.current.updateUsd(49)
@@ -70,6 +76,18 @@ describe('when use updateUsd', () => {
     });
 })
 
-describe('when re-render with new currency range', () => {
-    it.todo('should update input-value by new currency range');
+describe('when hook will rerender with new props', () => {
+    it('should update inputs values ', () => {
+        const {result, rerender} = renderHook(
+            ({initialRubValue, currencyRange}) => useConverter(initialRubValue, currencyRange),
+            {initialProps: {initialRubValue, currencyRange}}
+            );
+
+        rerender({initialRubValue: 210, currencyRange: 56});
+
+        const {rub, usd} = result.current;
+
+        expect(rub).toEqual(210);
+        expect(usd).toEqual(3.75);
+    });
 })

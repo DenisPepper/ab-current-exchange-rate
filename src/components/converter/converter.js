@@ -3,7 +3,8 @@ import {useConverter} from "model";
 
 export const Converter = () => {
     const {rub, usd, updateRub, updateUsd} = useConverter(
-        {initialRubValue: 100, currencyRange: 50}
+        100,
+        50
     );
 
     return (
